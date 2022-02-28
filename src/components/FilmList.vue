@@ -1,9 +1,9 @@
 <template>
+<section>
 <ul>
-
     <FilmCard v-for="(film,index) in films" :key="index" :film='film'/>
-
 </ul>
+</section>
   
 </template>
 

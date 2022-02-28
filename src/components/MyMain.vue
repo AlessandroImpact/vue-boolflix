@@ -24,6 +24,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../style/general.scss';
 
+main {
+    background-color: gray;
+    min-height: 1000px;
+}
 </style>

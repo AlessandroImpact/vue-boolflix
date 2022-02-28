@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <MyHeader @search='getFilms'/>
+    <MyHeader @search="getFilms"/>
     <MyMain :films="films"/>
    
   </div>
@@ -23,7 +23,9 @@ export default {
   data(){
     return {
 
-      films: []
+      films: [],
+      api_key:'7c9c3d249f254c7408c5f265ee84bd23',
+      language:'it_IT'
 
 
     }
@@ -31,7 +33,15 @@ export default {
   methods: {
       getFilms(keyword) {
 
-    axios.get('https://api.themoviedb.org/3/movie/550?api_key=7c9c3d249f254c7408c5f265ee84bd23&query='+keyword+'')
+    const params = {
+      params:{
+      'api_key': this.api_key,
+      'query': keyword,
+      'language': this.language
+      }
+   };
+
+    axios.get('https://api.themoviedb.org/3/movie/',{ params})
 
     .then( (response) =>{
       this.films = response.data.results;
@@ -50,12 +60,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+@import './style/general.scss'
+
 </style>
