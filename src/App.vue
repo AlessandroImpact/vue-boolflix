@@ -1,8 +1,8 @@
 <template>
   <div id="app">
 
-    <MyHeader/>
-    <MyMain/>
+    <MyHeader @search='getFilms'/>
+    <MyMain :films="films"/>
    
   </div>
 </template>
@@ -23,17 +23,20 @@ export default {
   data(){
     return {
 
+      films: []
+
 
     }
   },
   methods: {
-      getFilms() {
+      getFilms(keyword) {
 
-    axios.get('/user?ID=12345')
-    .then(function (response) {
-      // handle success
-      console.log(response);
+    axios.get('https://api.themoviedb.org/3/movie/550?api_key=7c9c3d249f254c7408c5f265ee84bd23&query='+keyword+'')
+
+    .then( (response) =>{
+      this.films = response.data.results;
     })
+
     .catch(function (error) {
       // handle error
       console.log(error);

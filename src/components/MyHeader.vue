@@ -4,7 +4,7 @@
     <form>
 
         <input type="text" v-model="searchText">
-        <button type="submit">Ricerca</button>
+        <button type="submit" @click.prevent="$emit('search', searchText)" >Ricerca</button>
 
     </form>
 </header>
