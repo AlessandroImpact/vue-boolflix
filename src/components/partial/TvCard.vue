@@ -6,10 +6,10 @@
             <!--<img src="" alt="" style="width:300px;height:300px;">  qui va l'immagine del titolo--> 
             </div>
             <div class="film-card-back">
-                <p>{{film.title}}</p>
-                <p>{{film.original_title}} </p>
-                <p><span>{{film.original_language}}</span> <lang-flag :iso="film.original_language" /> </p>
-                <p>{{film.vote_average}} </p>
+                <p>{{tv.title}}</p>
+                <p>{{tv.original_title}} </p>
+                <p><span>{{tv.original_language}}</span> <lang-flag :iso="tv.original_language" /> </p>
+                <p>{{tv.vote_average}} </p>
              </div>
         </div>
 </div>
@@ -23,14 +23,17 @@
 import LangFlag from '../../../node_modules/vue-lang-code-flags';
 
 export default {
-    name: 'FilmCard',
+    name: 'TvCard',
     props: {
-        'film': Object
+        'tv': Object
     },
      components: {
     LangFlag,
   },
 
+    data() {
+
+    }
 
 }
 </script>

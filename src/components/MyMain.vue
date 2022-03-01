@@ -2,7 +2,7 @@
 
     <main>
 
-        <FilmList :films='films'/>
+        <FilmList :films='films' :tv='tv'/>
         
     </main>
   
@@ -30,5 +30,6 @@ export default {
 main {
     background-color: gray;
     min-height: 1000px;
+
 }
 </style>
