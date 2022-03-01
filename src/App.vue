@@ -1,86 +1,81 @@
 <template>
   <div id="app">
-
-    <MyHeader @search="doSearch"/>
-    <MyMain :films="films" :tv="tv"/>
-   
+    <MyHeader @search="doSearch" />
+    <MyMain :films="films" :tv="tv" />
   </div>
 </template>
 
 <script>
-import MyHeader from './components/MyHeader.vue'
-import MyMain from './components/MyMain.vue'
-
-
+import MyHeader from "./components/MyHeader.vue";
+import MyMain from "./components/MyMain.vue";
+const axios = require("axios");
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     MyHeader,
-    MyMain 
+    MyMain,
   },
 
-  data(){
+  data() {
     return {
-      tv:[],
+      tv: [],
       films: [],
-      api_key:'7c9c3d249f254c7408c5f265ee84bd23',
-      language:'it_IT'
-    }
+      api_key: "7c9c3d249f254c7408c5f265ee84bd23",
+      language: "it_IT",
+    };
   },
   methods: {
-
     doSearch(keyword) {
-      this.getFilms(keyword);
-      this.getTv(keyword);
+      const params = {
+        params: {
+          api_key: this.api_key,
+          query: keyword,
+          language: this.language,
+        },
+      };
+
+      this.getFilms(params);
+      this.getTv(params);
     },
 
+    getTv(params) {
+      let tvRequest = "https://api.themoviedb.org/3/search/tv";
 
-    getTv(keyword){
-      
-
-    const axios = require('axios');
-
-     let tvRequest = 'https://api.themoviedb.org/3/search/tv?api_key='+ this.api_key + '&query=" ' + keyword + '"&language=' + this.language + ' ';
-   
-    axios.get(tvRequest)
-    .then( (tvRequest) =>{
-      this.tv = tvRequest.data.results;
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-
+      axios
+        .get(tvRequest, params)
+        .then((response) => {
+          this.tv = response.data.results;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
     },
-      
-      getFilms(keyword) {
 
-    const axios = require('axios');
-
-     let filmRequest = 'https://api.themoviedb.org/3/search/movie?api_key='+ this.api_key + '&query=" ' + keyword + '"&language=' + this.language + ' ';
-   
-    axios.get(filmRequest)
-    .then( (filmRequest) =>{
-      this.films = filmRequest.data.results;
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
-      }
-  }
-}
+    getFilms(params) {
+      let filmRequest = "https://api.themoviedb.org/3/search/movie";
+      axios
+        .get(filmRequest, params)
+        .then((response) => {
+          this.films = response.data.results;
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-
-@import './style/general.scss';
-
+@import "./style/general.scss";
+@import "~@fortawesome/fontawesome-free/css/all.css";
 </style>

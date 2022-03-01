@@ -1,8 +1,8 @@
 <template>
 <section>
 <ul>
-    <FilmCard v-for="(film,index) in films" :key="index" :film='film'/>
-    <TvCard v-for="(tv,index) in tv" :key="index" :tv='tv'/>
+    <FilmCard v-for="(film,index) in films" :key="'Film'+index" :film='film'/>
+    <TvCard v-for="(tv,index) in tv" :key="'Tv'+index" :tv='tv'/>
 </ul>
 </section>
   
@@ -15,7 +15,8 @@ import TvCard from './partial/TvCard.vue'
 export default {
     name:'FilmList',
     props: {
-        'films': Array
+        'films': Array,
+        'tv': Array
     },
 
     components: {
@@ -30,6 +31,7 @@ export default {
 
 section{
     display: flex;
+    flex-wrap: wrap;
     flex-grow: 4;
 }
 

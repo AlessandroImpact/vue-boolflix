@@ -3,7 +3,7 @@
     <div class="film-card">
         <div class="film-card-inner">
             <div class="film-card-front">
-            <!--<img src="" alt="" style="width:300px;height:300px;">  qui va l'immagine del titolo--> 
+           <img v-if="tv.poster_path" :src= "`https://image.tmdb.org/t/p/w342${tv.title}`">  
             </div>
             <div class="film-card-back">
                 <p>{{tv.title}}</p>
@@ -32,6 +32,9 @@ export default {
   },
 
     data() {
+        return {
+
+        }
 
     }
 

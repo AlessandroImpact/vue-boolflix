@@ -3,13 +3,16 @@
     <div class="film-card">
         <div class="film-card-inner">
             <div class="film-card-front">
-            <!--<img src="" alt="" style="width:300px;height:300px;">  qui va l'immagine del titolo--> 
+            <img v-if="tv.poster_path" :src= "'https://image.tmdb.org/t/p/w342' + tv.poster_path">
             </div>
             <div class="film-card-back">
                 <p>{{film.title}}</p>
                 <p>{{film.original_title}} </p>
                 <p><span>{{film.original_language}}</span> <lang-flag :iso="film.original_language" /> </p>
                 <p>{{film.vote_average}} </p>
+                <!--ciclo per far uscire stelle piene o vuote in base al voto in 5i-->
+                <i v-for="i in 5" :key="i" class=" fa-star" :class="(i < getComputedStar) ?'fa-solid':'fa-regular'"></i>
+               
              </div>
         </div>
 </div>
@@ -30,6 +33,12 @@ export default {
      components: {
     LangFlag,
   },
+  computed:{
+      getComputedStar(){
+          return Math.ceil(this.film.vote_average /2)
+      }
+  },
+  
 
 
 }

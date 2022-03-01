@@ -15,7 +15,8 @@ import FilmList from './FilmList.vue';
 export default {
     name:'MyMain',
     props: {
-        'films' : Array
+        'films': Array,
+        'tv': Array
     },
     components : {
         FilmList
