@@ -1,5 +1,5 @@
 <template>
-<section>
+<section class="d-flex flex-wrap">
 <ul>
     <FilmCard v-for="(film,index) in films" :key="'Film'+index" :film='film'/>
     <TvCard v-for="(tv,index) in tv" :key="'Tv'+index" :tv='tv'/>
@@ -29,10 +29,13 @@ export default {
 
 <style>
 
-section{
-    display: flex;
-    flex-wrap: wrap;
-    flex-grow: 4;
-}
+    
+    
 
+
+ul{
+     list-style-type: none;
+     
+  
+}
 </style>
